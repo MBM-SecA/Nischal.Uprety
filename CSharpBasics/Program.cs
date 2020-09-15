@@ -31,4 +31,14 @@
 //             object k="j diye ni hunxa yesma";
 //         }
 //     }
+using LearnCollections;
+
+public class Program
+{
+    static void Main()
+    {
+        Collections collections = new Collections();
+        collections.LearnDictionary();
+    }
+}
 
