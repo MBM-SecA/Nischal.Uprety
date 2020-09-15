@@ -52,7 +52,7 @@ public class MethodTeacher
 
 public class MethodTester
 {
-     static void Main()
+     static void Main34()
     {
         MethodTeacher methodTeacher = new MethodTeacher();
         double sum = methodTeacher.Sum(2345.6, 23452.1);
