@@ -37,7 +37,7 @@ namespace AllAboutClasses
         //Finalizer(destructor)
         ~Country()
         {
-             Console.WriteLine('i am dying...');
+             Console.WriteLine("i am dying...");
         }
  
     }
