@@ -37,8 +37,9 @@ public class Program
 {
     static void Main()
     {
-        Collections collections = new Collections();
-        collections.LearnDictionary();
+       
+        var square = new Square(32.5);
+         square.Display();
     }
 }
 
