@@ -38,8 +38,11 @@ public class Program
     static void Main()
     {
        
-        var square = new Square(32.5);
-         square.Display();
+        
+         FileIO fileIO = new FileIO();
+            // fileIO.LearnFileHandeling();
+            fileIO.LearnFileInfo();
+
     }
 }
 

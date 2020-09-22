@@ -1,79 +1,70 @@
 using System;
  
+public interface IshapeWithSides//interface for multiple inheritance
+{
+    double GetDiagonal();
+}
 public abstract class Shape
 {
     public abstract double GetArea();
- 
+    
     public abstract double GetCircumference();
- 
+    
     public virtual void Display()
     {
-        Console.WriteLine($"Displaying result for");
+        Console.WriteLine($"Displaying result for shape");
     }
  
 }
  
-public class Square : Shape
+public class Rectangle: Shape,IshapeWithSides 
 {
-    public Square(double side)
+    public Rectangle(double length,double breadth)
     {
-        Side = side;
+        Length=length;
+        Breadth=breadth;
     }
-    public double Side { get; set; }
-    public override double GetArea() => Side * Side;
- 
-    public override double GetCircumference() => 4 * Side;
- 
+    public double Length { get; set; }
+    public double Breadth { get; set; }
+    public override double GetArea()=> Length*Breadth;
+    public override double GetCircumference()=> 2*(Length + Breadth);
     public override void Display()
     {
-        Console.WriteLine($"Area : {GetArea()}");
-        Console.WriteLine($"Circimference : {GetCircumference()}");
+        if(Length == Breadth)
+             Console.WriteLine($"Displaying result for Square of side [{Length}]");
+        else
+             Console.WriteLine($"Displaying result for Rectangle of side [{Length} x {Breadth}]");
+       Console.WriteLine($"Area:{this.GetArea()}");
+       Console.WriteLine($"Perimeter:{this.GetCircumference()}");
+        Console.WriteLine($"Diagonal:{this.GetDiagonal()}");
+    
     }
+ 
+   public double GetDiagonal() => Math.Sqrt(Length*Length + Breadth*Breadth);
 }
- 
-public class Rectangle : Shape
+public class Square: Rectangle
 {
-    public double Length { get; set; }
- 
-    public double Breadth { get; set; }
- 
-    public Rectangle(double length, double breadth)
+    public Square(double side) : base(side,side)
     {
-        Length = length;
-        Breadth = breadth;
+ 
+    }        
+ 
+}
+ 
+public class Circle: Shape 
+{
+    public Circle(double radius)
+    {
+        Radius = radius;
     }
- 
-    public override double GetArea() => Length * Breadth;
- 
-    public override double GetCircumference() => 2 * (Length + Breadth);
-}
- 
-public class Circle : Shape
-{
     public double Radius { get; set; }
- 
-    public override double GetArea() => Math.PI * (Radius * Radius);
- 
-    public override double GetCircumference() => 2 * Math.PI * Radius;
+    public override double GetArea()=> Math.PI*Radius*Radius;
+    public override double GetCircumference()=> 2*Math.PI*Radius;
+    public override void Display()
+    {
+       Console.WriteLine($"Displaying result for Circle of Radius {Radius}");
+       Console.WriteLine($"Area:{this.GetArea()}");
+       Console.WriteLine($"Perimeter:{this.GetCircumference()}");
+       
+    }
 }
-
-class A
-{
-
-}
-class B : A
-{
-
-}
-class C : B
-{
-
-}
-class D : IA ,IB
-{}
-
-interface IA 
-{}
-
-interface IB
-{}
