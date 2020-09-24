@@ -1,7 +1,7 @@
 using System;
 class Question3
 {
-    static void Main()
+    static void Main3()
     {
          Console.Write("Enter your full Name : ");
         string name = Console.ReadLine();
