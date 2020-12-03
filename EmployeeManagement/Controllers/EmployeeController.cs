@@ -1,30 +1,39 @@
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-
-public class EmployeeController : Controller
+ 
+public class EmployeeController: Controller
 {
+    private readonly EMSContext db;
+ 
+    public EmployeeController(EMSContext _db)
+   {
+        db = _db;
+    }
+     
     public ActionResult Index()
     {
-        List<Person> employees = Person.GetEmployees();
+        
+        var employees = db.People.ToList();
         return View(employees);
     }
-
-    public ActionResult Detail([FromQuery]string firstName)
-    {
-        var employees = Person.GetEmployees();
-        var employee= employees.FirstOrDefault(x =>x.FirstName == firstName);
+    public ActionResult Detail([FromQuery]int id)
+    {  
+       var  employees = Person.GetEmployees();
+        Person employee= employees.FirstOrDefault(x=>x.Id==id);
         return View(employee);
+        
     }
-
+ 
     public ActionResult Add()
     {
         return View();
     }
-    [HttpPost]
-     public ActionResult<string> Add([FromForm]Person person)
+[HttpPost]
+    public ActionResult<string> Add([FromForm]Person person)
     {
-        return "result saved";
+        return "Employee Added successfully!!!";
     }
-
+ 
 }
+
+ 

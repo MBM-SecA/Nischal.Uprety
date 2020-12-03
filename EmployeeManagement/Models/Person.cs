@@ -9,6 +9,7 @@ public class Person
     [Required]
     [Display(Name="Last Name")]
     public string Surname { get; set; } 
+    public int Id { get; set; }
     public string Address { get; set; }
     public double? Salary { get; set; }
     public char? Gender { get; set; } = 'M';
