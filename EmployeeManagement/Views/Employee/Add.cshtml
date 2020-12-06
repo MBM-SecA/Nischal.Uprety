@@ -1,6 +1,7 @@
 @model Person
 @{
     ViewData["Title"] = "Add Employee";
+    string[] genders = {"male","female","others"};
 }
 <h3>Add employee..</h3>
 <hr/>
@@ -22,7 +23,16 @@
   </div>
   <div class="form-group">
     <label asp-for="Gender">Gender</label>
-    <input type="text" class="form-control" asp-for="Gender" placeholder="Enter gender">
+    @foreach (var gender in genders)
+    {
+      
+      <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" asp-for="Gender" id="@gender[0]" value="@gender">
+        <label class="form-check-label" asp-for="@gender">@gender</label>
+      </div>
+        
+    }
+    
   </div>
   <div class="form-group">
     <label asp-for="Salary">Salary</label>
