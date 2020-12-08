@@ -34,13 +34,13 @@ public class EmployeeController: Controller
         db.SaveChanges();
         return RedirectToAction(nameof(Index));
     }
-    public ActionResult Edit(int id){
+    public ActionResult Update(int id){
         var employee = db.People.Find(id);
         return View(employee);
 
     }
     [HttpPost]
-     public ActionResult Edit(Person person){
+     public ActionResult Update(Person person){
         db.People.Attach(person);
         db.People.Update(person);
         db.SaveChanges();
