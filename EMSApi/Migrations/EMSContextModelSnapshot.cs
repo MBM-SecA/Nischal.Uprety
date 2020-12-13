@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EmployeeManagement.Migrations
+namespace EMSApi.Migrations
 {
     [DbContext(typeof(EMSContext))]
     partial class EMSContextModelSnapshot : ModelSnapshot
@@ -35,10 +35,10 @@ namespace EmployeeManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Department");
                 });
 
-            modelBuilder.Entity("Person", b =>
+            modelBuilder.Entity("Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,34 +47,32 @@ namespace EmployeeManagement.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
+                    b.Property<long?>("Contact")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("DepartmentId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<char?>("Gender")
+                    b.Property<char>("Gender")
                         .HasColumnType("TEXT");
 
-                    b.Property<double?>("Salary")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
+                    b.Property<string>("LastName")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("People");
+                    b.ToTable("Employee");
                 });
 
-            modelBuilder.Entity("Person", b =>
+            modelBuilder.Entity("Employee", b =>
                 {
-                    b.HasOne("Department", "department")
-                        .WithMany("people")
+                    b.HasOne("Department", "Department")
+                        .WithMany("People")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

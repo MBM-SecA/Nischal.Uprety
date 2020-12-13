@@ -42,6 +42,11 @@ public class DepartmentController : Controller
         db.SaveChanges();
         return RedirectToAction(nameof(Index));
     }
+        public ActionResult Detail(int id)
+    {
+        var department = db.Departments.Find(id);
+        return View(department);
+    }
 
     public ActionResult Delete(int id)
     {

@@ -2,14 +2,16 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EmployeeManagement.Migrations
+namespace EMSApi.Migrations
 {
     [DbContext(typeof(EMSContext))]
-    partial class EMSContextModelSnapshot : ModelSnapshot
+    [Migration("20201213033009_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,10 +37,10 @@ namespace EmployeeManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Department");
                 });
 
-            modelBuilder.Entity("Person", b =>
+            modelBuilder.Entity("Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,34 +49,32 @@ namespace EmployeeManagement.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
+                    b.Property<long?>("Contact")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("DepartmentId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<char?>("Gender")
+                    b.Property<char>("Gender")
                         .HasColumnType("TEXT");
 
-                    b.Property<double?>("Salary")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
+                    b.Property<string>("LastName")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("People");
+                    b.ToTable("Employee");
                 });
 
-            modelBuilder.Entity("Person", b =>
+            modelBuilder.Entity("Employee", b =>
                 {
-                    b.HasOne("Department", "department")
-                        .WithMany("people")
+                    b.HasOne("Department", "Department")
+                        .WithMany("People")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
