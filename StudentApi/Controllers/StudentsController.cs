@@ -11,7 +11,7 @@ public class StudentsController : ControllerBase
     {
         var students = new string[] { "Dipesh", "Rajesh" };
 
-        students = null;
+        //students = null;
         if (students == null)
         {
             return NotFound();
